@@ -1,0 +1,14 @@
+C:\Users\feder\OneDrive\Escritorio\tp_csharp\tp_csharp\bin\Debug\net9.0\tp_csharp.exe
+C:\Users\feder\OneDrive\Escritorio\tp_csharp\tp_csharp\bin\Debug\net9.0\tp_csharp.deps.json
+C:\Users\feder\OneDrive\Escritorio\tp_csharp\tp_csharp\bin\Debug\net9.0\tp_csharp.runtimeconfig.json
+C:\Users\feder\OneDrive\Escritorio\tp_csharp\tp_csharp\bin\Debug\net9.0\tp_csharp.dll
+C:\Users\feder\OneDrive\Escritorio\tp_csharp\tp_csharp\bin\Debug\net9.0\tp_csharp.pdb
+C:\Users\feder\OneDrive\Escritorio\tp_csharp\tp_csharp\obj\Debug\net9.0\tp_csharp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\feder\OneDrive\Escritorio\tp_csharp\tp_csharp\obj\Debug\net9.0\tp_csharp.AssemblyInfoInputs.cache
+C:\Users\feder\OneDrive\Escritorio\tp_csharp\tp_csharp\obj\Debug\net9.0\tp_csharp.AssemblyInfo.cs
+C:\Users\feder\OneDrive\Escritorio\tp_csharp\tp_csharp\obj\Debug\net9.0\tp_csharp.csproj.CoreCompileInputs.cache
+C:\Users\feder\OneDrive\Escritorio\tp_csharp\tp_csharp\obj\Debug\net9.0\tp_csharp.dll
+C:\Users\feder\OneDrive\Escritorio\tp_csharp\tp_csharp\obj\Debug\net9.0\refint\tp_csharp.dll
+C:\Users\feder\OneDrive\Escritorio\tp_csharp\tp_csharp\obj\Debug\net9.0\tp_csharp.pdb
+C:\Users\feder\OneDrive\Escritorio\tp_csharp\tp_csharp\obj\Debug\net9.0\tp_csharp.genruntimeconfig.cache
+C:\Users\feder\OneDrive\Escritorio\tp_csharp\tp_csharp\obj\Debug\net9.0\ref\tp_csharp.dll
