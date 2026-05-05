@@ -25,7 +25,7 @@ public static class Banco
     }
 
     public static void EliminarCuenta(int numCuenta){
-        var cuenta = ListaCuentas.FirstOrDefault(c => c.NumeroCuentaId == numCuenta);
+        var cuenta = ListaCuentas.FirstOrDefault(c => c.NumeroCuenta == numCuenta);
         
         if (cuenta != null)
         {
@@ -43,13 +43,13 @@ public static class Banco
 
     public static List<Cuenta> BusquedaPorCBU(int cbu){
         return ListaCuentas
-            .Where(c => c.Cbu == cbu)
+            .Where(c => c.CBU == cbu)
             .ToList();
     }
-    public static List<Cuenta> BusquedaPorAlias(string alias){
+    //public static List<Cuenta> BusquedaPorAlias(string alias){
         // ignora mayúsculas/minúsculas
-        return ListaCuentas
-            .Where(c => c.Alias.Equals(alias, StringComparison.OrdinalIgnoreCase))
-            .ToList();
-    }
+    //    return ListaCuentas
+    //        .Where(c => c.Alias.Equals(alias, StringComparison.OrdinalIgnoreCase))
+    //        .ToList();
+    //}
 }

@@ -29,7 +29,8 @@ public static class ConsoleInterface
         if (int.TryParse(ingreso, out int m))
         {
             return m;
-        } else {return -1;}
+        } else {return -1;} 
+        //
    }
 
     public static void ImprimirMenuInicio()
