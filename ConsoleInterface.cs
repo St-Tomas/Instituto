@@ -24,6 +24,14 @@ public static class ConsoleInterface
 
         return default;
     }
+    public static int Leerint(){
+        var ingreso= Console.ReadLine();
+        if (int.TryParse(ingreso, out int m))
+        {
+            return m;
+        } else {return -1;} 
+        //
+   }
 
     public static void ImprimirMenuInicio()
     {
