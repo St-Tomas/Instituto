@@ -1,8 +1,9 @@
 namespace SistemaBanco;
-public class CajaAhorro : Cuenta {
+public class CuentaCorriente : Cuenta {
 
-    public CajaAhorro(string titular, int cbu, int numeroCuenta) : base(titular, cbu, numeroCuenta){
-        TipoCuenta = TipoCuenta.CajaDeAhorro;
+    public CuentaCorriente(string titular, int cbu, int numerocuentaid) : base(titular, cbu, numerocuentaid){
+        TipoCuenta = TipoCuenta.CuentaCorriente;
+        MargenDeuda = -10000m;
         CuentaMovimientos.Add(new Movimiento(0,TipoMovimiento.CrearCuenta));
     }
     public override void Transferir(Cuenta cuentaDestino, decimal monto){
@@ -23,13 +24,14 @@ public class CajaAhorro : Cuenta {
         }
     }
     public override bool ValidarRetiro(decimal monto){
-        return monto > 0 && Saldo >= monto;
+        return monto > 0 && (Saldo - monto >= MargenDeuda);
     }
     public override void Depositar(decimal monto){
         if(ValidarDeposito(monto)){
             Saldo += monto;
             CuentaMovimientos.Add(new Movimiento(monto,TipoMovimiento.Deposito));
         }
+
     }
     public override bool ValidarDeposito(decimal monto){
         return monto > 0;
