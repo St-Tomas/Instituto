@@ -3,6 +3,7 @@ using System.Numerics;
 
 public abstract class Cuenta
 {
+    public bool EstadoCuenta;
     public string Titular {get; init;}
     public decimal Saldo {get; set;}
     public int CBU {get; init;}
@@ -18,6 +19,7 @@ public abstract class Cuenta
         Saldo = 0;
         CBU = cbu;
         NumeroCuenta = numeroCuenta;
+        
     }
     public abstract void Depositar (decimal monto);
     public abstract void Retirar (decimal monto);

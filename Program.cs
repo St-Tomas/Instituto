@@ -1,5 +1,25 @@
 ﻿using SistemaBanco;
 
-Console.WriteLine("Test otra vez");
-var fede = ConsoleInterface.Leerint();
-Console.WriteLine(fede);
+while (ConsoleInterface.ProgramAlive)
+{
+    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedee",124346576,TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrr",124346576,TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",1246,TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("ferrr",124346576,TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
+    Banco.ListaCuentas[5].Depositar(100000000);
+
+    ConsoleInterface.ImprimirMenuInicio();
+    ConsoleInterface.EleccionMenu(ConsoleInterface.Leerint());
+    
+}

@@ -46,10 +46,4 @@ public static class Banco
             .Where(c => c.CBU == cbu)
             .ToList();
     }
-    //public static List<Cuenta> BusquedaPorAlias(string alias){
-        // ignora mayúsculas/minúsculas
-    //    return ListaCuentas
-    //        .Where(c => c.Alias.Equals(alias, StringComparison.OrdinalIgnoreCase))
-    //        .ToList();
-    //}
 }

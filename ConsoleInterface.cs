@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
+
 namespace SistemaBanco;
 
 public static class ConsoleInterface
@@ -10,31 +11,24 @@ public static class ConsoleInterface
     public static bool ProgramAlive = true;
 
     // --- MÉTODO PARA LEER DATOS ---
-    private static T ObtenerValorProtegido<T>(object obj, string nombre)
-    {
-        var tipo = obj.GetType();
-        
-        // Busca en las Propiedades (ej. Titular, Saldo, CBU)
-        var prop = tipo.GetProperty(nombre, BindingFlags.NonPublic | BindingFlags.Instance);
-        if (prop != null) return (T)prop.GetValue(obj);
-
-        // Busca en los Campos (ej. NumeroCuenta, TipoCuenta)
-        var campo = tipo.GetField(nombre, BindingFlags.NonPublic | BindingFlags.Instance);
-        if (campo != null) return (T)campo.GetValue(obj);
-
-        return default;
-    }
     public static int Leerint(){
-        var ingreso= Console.ReadLine();
-        if (int.TryParse(ingreso, out int m))
-        {
-            return m;
-        } else {return -1;} 
-        //
-   }
+        while(true){
+            var ingreso= Console.ReadLine();
+            if (int.TryParse(ingreso, out int m)){
+                return m;
+            } 
+                Console.WriteLine("Opcion ingresada Invalida.");
+        }
+    }
+   public static void ConsoleCleanRd()
+    {
+        Console.Read();
+        Console.Clear();
+    }
 
     public static void ImprimirMenuInicio()
     {
+        Console.Clear();
         Console.WriteLine("--- SISTEMA BANCARIO ---");
         Console.WriteLine("1: Crear Cuenta.");
         Console.WriteLine("2: Eliminar Cuenta.");
@@ -46,28 +40,19 @@ public static class ConsoleInterface
 
     public static void EleccionMenu(int option)
     {
+        Console.Clear();
         switch (option)
         {
             case 1:
                 ConsoleCrearUsuario();
                 break;
             case 2:
-                ConsoleEliminarUsuario();
+                ConsoleDarDeBaja();
                 break;
             case 3:
-                Console.WriteLine("\n¿Cómo desea ordenar la lista?");
-                Console.WriteLine("1: Nro Cuenta Asc | 2: Nro Cuenta Desc | 3: Alfabético | 4: Saldo");
-                if (int.TryParse(Console.ReadLine(), out int orden))
-                    ImprimirCuentas(orden);
-                else
-                    ImprimirCuentas(1); // Por defecto si escribe mal
+                ConsoleImprimirCuentas();
                 break;
             case 4:
-                // Sumamos los saldos accediendo a la propiedad protected "Saldo"
-                decimal total = Banco.ListaCuentas.Sum(c => ObtenerValorProtegido<decimal>(c, "Saldo"));
-                Console.WriteLine($"\nREPORTE GENERAL:");
-                Console.WriteLine($"Total de cuentas: {Banco.ListaCuentas.Count}");
-                Console.WriteLine($"Capital total en banco: {total:C2}");
                 break;
             case 5:
                 ProgramAlive = false;
@@ -77,6 +62,8 @@ public static class ConsoleInterface
 
     public static void ConsoleCrearUsuario()
     {
+        Console.Clear();
+        Console.WriteLine("Crear una nueva Cuenta:");
         Console.WriteLine("1: Caja de Ahorro | 2: Cuenta Corriente");
         int.TryParse(Console.ReadLine(), out int opcionTipo);
         TipoCuenta tipoDeCuenta = opcionTipo == 2 ? TipoCuenta.CuentaCorriente : TipoCuenta.CajaDeAhorro;
@@ -91,55 +78,50 @@ public static class ConsoleInterface
         Console.WriteLine("Petición de creación enviada.");
     }
 
-    public static void ConsoleEliminarUsuario()
+    public static void ConsoleDarDeBaja()
     {
-        Console.Write("Ingrese el Número de Cuenta a eliminar: ");
-        string idCuenta = Console.ReadLine();
-        
-        var cuentaAEliminar = Banco.ListaCuentas.FirstOrDefault(c => 
-            ObtenerValorProtegido<string>(c, "NumeroCuenta") == idCuenta);
-        
-        if (cuentaAEliminar != null)
-        {
-            Banco.ListaCuentas.Remove(cuentaAEliminar);
-            Console.WriteLine("Cuenta eliminada con éxito.");
-        }
-        else
-        {
-            Console.WriteLine("No se encontró ninguna cuenta con ese número.");
-        }
     }
 
-    public static void ImprimirCuentas(int orden)
+    public static void ConsoleImprimirCuentas()
     {
-        IEnumerable<Cuenta> listadoOrdenado = Banco.ListaCuentas;
-
+        Console.WriteLine("Ingrese un tipo de Ordenamiento");
+        Console.WriteLine("1: Nro Cuenta Asc | 2: Tipo | 3: Alfabético | 4: Saldo");
+        var orden = Leerint();
         // Ordenamos extrayendo los valores en tiempo real
-        switch (orden)
-        {
+        IEnumerable<Cuenta> listadoOrdenado = Banco.ListaCuentas;
+        switch (orden){
             case 1:
-                listadoOrdenado = Banco.ListaCuentas.OrderBy(x => ObtenerValorProtegido<string>(x, "NumeroCuenta"));
+                listadoOrdenado = Banco.ListaCuentas.OrderBy(x => x.NumeroCuenta);
                 break;
             case 2:
-                listadoOrdenado = Banco.ListaCuentas.OrderByDescending(x => ObtenerValorProtegido<string>(x, "NumeroCuenta"));
+                listadoOrdenado = Banco.ListaCuentas.OrderBy(x => x.TipoCuenta);
                 break;
             case 3:
-                listadoOrdenado = Banco.ListaCuentas.OrderBy(x => ObtenerValorProtegido<string>(x, "Titular"));
+                listadoOrdenado = Banco.ListaCuentas.OrderBy(x => x.Titular);
                 break;
             case 4:
-                listadoOrdenado = Banco.ListaCuentas.OrderByDescending(x => ObtenerValorProtegido<decimal>(x, "Saldo"));
+                listadoOrdenado = Banco.ListaCuentas.OrderBy(x => x.Saldo);
                 break;
         }
-
+        int anchoTitular = listadoOrdenado.Max(c => c.Titular.ToString().Length);
+        int anchoNumCuenta = listadoOrdenado.Max(c => c.NumeroCuenta.ToString().Length);
+        int anchoSaldo = listadoOrdenado.Max(c => c.Saldo.ToString().Length);
         Console.WriteLine("\n--- LISTADO DE CUENTAS ---");
         foreach (Cuenta cuenta in listadoOrdenado)
         {
-            // Obtenemos los datos para armar el string de impresión
-            string nro = ObtenerValorProtegido<string>(cuenta, "NumeroCuenta");
-            string titular = ObtenerValorProtegido<string>(cuenta, "Titular");
-            decimal saldo = ObtenerValorProtegido<decimal>(cuenta, "Saldo");
-            
-            Console.WriteLine($"Nro: {nro ?? "Sin asignar"} | Titular: {titular} | Saldo: {saldo:C2}"); 
+            Console.WriteLine($"{cuenta.
+                                NumeroCuenta.
+                                ToString().
+                                PadRight(anchoNumCuenta)
+                                }||{cuenta.
+                                Titular.
+                                PadLeft(anchoTitular)
+                                }||{cuenta.CBU
+                                }||{cuenta.TipoCuenta
+                                }||||{cuenta.Saldo.
+                                ToString().PadRight(anchoSaldo)}");
         }
+        Console.WriteLine("\nPresione un boton para continuar");
+        Console.ReadKey();
     }
 }
