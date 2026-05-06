@@ -20,6 +20,24 @@ while (ConsoleInterface.ProgramAlive)
     Banco.ListaCuentas[5].Depositar(100000000);
 
     ConsoleInterface.ImprimirMenuInicio();
-    ConsoleInterface.EleccionMenu(ConsoleInterface.Leerint());
+    //ConsoleInterface.EleccionMenu(ConsoleInterface.Leerint());
     
+    //Menú de seleccion
+    switch (ConsoleInterface.Leerint())
+    {
+        case 1:
+            ConsoleInterface.ConsoleCrearUsuario();
+            break;
+        case 2:
+            ConsoleInterface.ConsoleDarDeBaja();
+            break;
+        case 3:
+            ConsoleInterface.ConsoleImprimirCuentas();
+            break;
+        case 4:
+            break;
+        case 5:
+            ConsoleInterface.ProgramAlive = false;
+            break;
+    }
 }

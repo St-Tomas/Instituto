@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-
 namespace SistemaBanco;
 
 public static class ConsoleInterface
@@ -38,7 +37,7 @@ public static class ConsoleInterface
         Console.Write("Seleccione una opción: ");
     }
 
-    public static void EleccionMenu(int option)
+/*     public static void EleccionMenu(int option)
     {
         Console.Clear();
         switch (option)
@@ -58,7 +57,7 @@ public static class ConsoleInterface
                 ProgramAlive = false;
                 break;
         }
-    }
+    } */
 
     public static void ConsoleCrearUsuario()
     {
