@@ -22,7 +22,7 @@ public static class Banco
         }
         NumCuentaId++;
     }
-	    public static void DarDeBaja(int numeroCuenta){
+	public static void DarDeBaja(int numeroCuenta){
         var cuenta = ListaCuentas.FirstOrDefault(c => c.NumeroCuenta == numeroCuenta);
         if (cuenta != null)
         {
@@ -33,7 +33,7 @@ public static class Banco
             throw new Exception("Número de cuenta no encontrado.");
         }
     }
-        public static void EliminarCuenta(int numeroCuenta){
+    public static void EliminarCuenta(int numeroCuenta){
         var cuenta = ListaCuentas.FirstOrDefault(c => c.NumeroCuenta == numeroCuenta);
         if (cuenta != null)
         {
@@ -43,7 +43,7 @@ public static class Banco
         {
             // Lanzar error si la cuenta no existe
             throw new Exception("Número de cuenta no encontrado.");
-        } 
+        }  
     }
     public static string GenerarCBU(int numeroCuenta){
     string banco = "285";

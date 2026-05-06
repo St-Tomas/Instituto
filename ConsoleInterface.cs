@@ -31,35 +31,13 @@ public static class ConsoleInterface
         Console.Clear();
         Console.WriteLine("--- SISTEMA BANCARIO ---");
         Console.WriteLine("1: Crear Cuenta.");
-        Console.WriteLine("2: Eliminar Cuenta.");
+        Console.WriteLine("2: Dar Cuenta de Baja.");
         Console.WriteLine("3: Mostrar Cuentas.");
         Console.WriteLine("4: Mostrar reportes de Cuentas.");
         Console.WriteLine("5: Eliminar una cuenta.");
         Console.WriteLine("6: Salir.");
         Console.Write("Seleccione una opción: ");
     }
-
-/*     public static void EleccionMenu(int option)
-    {
-        Console.Clear();
-        switch (option)
-        {
-            case 1:
-                ConsoleCrearUsuario();
-                break;
-            case 2:
-                ConsoleDarDeBaja();
-                break;
-            case 3:
-                ConsoleImprimirCuentas();
-                break;
-            case 4:
-                break;
-            case 5:
-                ProgramAlive = false;
-                break;
-        }
-    } */
 
     public static void ConsoleCrearUsuario()
     {
@@ -75,26 +53,25 @@ public static class ConsoleInterface
         Banco.CrearCuenta(titular, Banco.GenerarCBU(Banco.NumCuentaId), tipoDeCuenta);
         Console.WriteLine("Petición de creación enviada.");
     }
-    public static void ConsoleDarDeBaja()
-    {
-//cambiar el status de la cuenta a inactiva, no eliminarla de la lista
+    public static void ConsoleDarDeBaja(){
+    //cambiar el status de la cuenta a inactiva, no eliminarla de la lista
         Console.Clear();
         Console.WriteLine("Ingrese el número de cuenta a dar de baja:");
         int.TryParse(Console.ReadLine(), out int numeroCuenta);
-        var cuenta = Banco.ListaCuentas.FirstOrDefault(c => c.NumeroCuenta == numeroCuenta);
-        if (cuenta != null)
+
+        try
         {
-            cuenta.EstadoCuenta = false;
+            Banco.DarDeBaja(numeroCuenta);   
+            // La cuenta se dió de baja
             Console.WriteLine("Cuenta dada de baja exitosamente.");
-            Console.WriteLine("\nPresione un boton para continuar");
-            Console.ReadKey();
         }
-        else
+        catch (Exception ex)
         {
-            Console.WriteLine("Número de cuenta no encontrado.");
-            Console.WriteLine("\nPresione un boton para continuar");
-            Console.ReadKey();
+            // Mensaje de excepción si la cuenta no existe
+            Console.WriteLine(ex.Message); 
         }
+        Console.WriteLine("\nPresione un boton para continuar");
+        Console.ReadKey();
     }
 
     public static void ConsoleImprimirCuentas()
@@ -139,14 +116,22 @@ public static class ConsoleInterface
         Console.WriteLine("\nPresione un boton para continuar");
         Console.ReadKey();
     }
-    public static void ConsoleEliminarCuenta()
-    {
+	public static void ConsoleEliminarCuenta(){
         Console.Clear();
         Console.WriteLine("\nIngrese el número de cuenta a eliminar:");
         int.TryParse(Console.ReadLine(), out int numeroCuenta);
-            
-        Console.WriteLine(Banco.EliminarCuenta(numeroCuenta));
 
+        try
+        {
+            Banco.EliminarCuenta(numeroCuenta);   
+            // La cuenta se eliminó bien
+            Console.WriteLine("Cuenta eliminada exitosamente.");
+        }
+        catch (Exception ex)
+        {
+            // Mensaje de excepción si la cuenta no existe
+            Console.WriteLine(ex.Message); 
+        }
         Console.WriteLine("\nPresione un boton para continuar");
         Console.ReadKey();
     }
