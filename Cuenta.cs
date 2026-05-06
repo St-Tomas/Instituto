@@ -10,7 +10,7 @@ public abstract class Cuenta
     public TipoCuenta TipoCuenta;
     public int NumeroCuenta;
     public decimal MargenDeuda;
-    public record Movimiento(decimal Monto, TipoMovimiento tipo);
+    public record Movimiento(decimal Monto, TipoMovimiento Tipo, DateTime Horita);
     public List<Movimiento> CuentaMovimientos = new();
 
     public Cuenta (string titular, string cbu, int numeroCuenta)

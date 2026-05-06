@@ -36,12 +36,13 @@ while (ConsoleInterface.ProgramAlive)
             ConsoleInterface.ConsoleImprimirCuentas();
             break;
         case 4:
+            
             break;
         case 5:
             ConsoleInterface.ConsoleEliminarCuenta();
             break;
         case 6:
-            ConsoleInterface.ProgramAlive = false;
+            ConsoleInterface.ConsoleSalir();
             break;
     }
 }
