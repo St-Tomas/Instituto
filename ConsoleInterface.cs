@@ -56,7 +56,7 @@ public static class ConsoleInterface
     public static void ConsoleDarDeBaja(){
     //cambiar el status de la cuenta a inactiva, no eliminarla de la lista
         Console.Clear();
-        Console.WriteLine("Ingrese el número de cuenta a dar de baja:");
+        Console.WriteLine("\nIngrese el número de cuenta a dar de baja:");
         int.TryParse(Console.ReadLine(), out int numeroCuenta);
 
         try
