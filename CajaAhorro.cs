@@ -5,7 +5,7 @@ public class CajaAhorro : Cuenta {
         TipoCuenta = TipoCuenta.CajaDeAhorro;
         CuentaMovimientos.Add(new Movimiento(0,TipoMovimiento.CrearCuenta,DateTime.Now));
     }
-    public override void Transferir(Cuenta cuentaDestino, decimal monto){
+        public override void Transferir(Cuenta cuentaDestino, decimal monto){
         if(ValidarTransferencia(monto)){
             Retirar(monto);
             CuentaMovimientos.Add(new Movimiento(monto,TipoMovimiento.TransferenciaEnviada,DateTime.Now));

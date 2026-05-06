@@ -97,6 +97,29 @@ public static class Banco
             throw new Exception("Número de cuenta no encontrado.");
         }
     }
+    //tenemos que implementar la funcion de transferencia en el banco, porque sino no se puede hacer la transferencia entre cuentas
+    public static void Transferir(int numeroCuentaOrigen, int numeroCuentaDestino, decimal monto){
+        var cuentaOrigen = ListaCuentas.FirstOrDefault(c => c.NumeroCuenta == numeroCuentaOrigen);
+        var cuentaDestino = ListaCuentas.FirstOrDefault(c => c.NumeroCuenta == numeroCuentaDestino);
+        if (cuentaOrigen != null && cuentaDestino != null)
+        {
+            if (cuentaOrigen.ValidarTransferencia(monto))
+            {
+                cuentaOrigen.Transferir(cuentaDestino, monto);
+            }
+            else
+            {
+                throw new Exception ("Transferencia inválida");
+            }    
+        }
+        else
+        {
+            // Lanzar error si alguna de las cuentas no existe
+            throw new Exception("Número de cuenta no encontrado.");
+        }
+    }
+
+
     public static List<Cuenta> BusquedaPorTitular(string titular){
         return ListaCuentas
             .Where(c => c.Titular.Contains(titular, StringComparison.OrdinalIgnoreCase))

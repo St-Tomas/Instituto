@@ -33,8 +33,8 @@ public static class ConsoleInterface
         Console.WriteLine("1: Administrar Cuentas."); //De aca a un switch para crear, eliminar y dar de baja
         Console.WriteLine("2: Mostrar Cuentas.");
         Console.WriteLine("3: Realizar Operaciones.");
-        Console.WriteLine("3: Mostrar reportes de Cuentas.");
-        Console.WriteLine("4: Salir.");
+        Console.WriteLine("4: Mostrar reportes de Cuentas.");
+        Console.WriteLine("5: Salir.");
         Console.Write("Seleccione una opción: ");
     }
     public static void ConsoleAdministrarCuentas()
@@ -113,6 +113,7 @@ public static class ConsoleInterface
         int anchoTitular = listadoOrdenado.Max(c => c.Titular.ToString().Length);
         int anchoNumCuenta = listadoOrdenado.Max(c => c.NumeroCuenta.ToString().Length);
         int anchoSaldo = listadoOrdenado.Max(c => c.Saldo.ToString().Length);
+        int anchoTipoCuenta = listadoOrdenado.Max(c => c.TipoCuenta.ToString().Length);
         Console.WriteLine("\n--- LISTADO DE CUENTAS ---");
         foreach (Cuenta cuenta in listadoOrdenado)
         {
@@ -124,9 +125,10 @@ public static class ConsoleInterface
                                 Titular.
                                 PadLeft(anchoTitular)
                                 }||{cuenta.CBU
-                                }||{cuenta.TipoCuenta
-                                }||||{cuenta.Saldo.
-                                ToString().PadRight(anchoSaldo)}");
+                                }||{cuenta.TipoCuenta.ToString().PadRight(anchoTipoCuenta)
+                                }||||$ {cuenta.Saldo.
+                                ToString().PadRight(anchoSaldo)}||{(cuenta.
+                                EstadoCuenta ? "Activa" : "Inactiva")}");
         }
         Console.WriteLine("\nPresione un boton para continuar");
         Console.ReadKey();
@@ -150,9 +152,11 @@ public static class ConsoleInterface
         Console.WriteLine("\nPresione un boton para continuar");
         Console.ReadKey();
     }
-    //añadir mostrar consola para reportes y salir
-    public static void ConsoleMostrarReportes(int numeroCuenta){
+    //añadir mostrar consola para reportes y salir int numeroCuenta
+    public static void ConsoleMostrarReportes(){
         Console.Clear();
+        Console.WriteLine("Ingrese el número de cuenta para mostrar movimientos:");
+        int numeroCuenta = Leerint();
         var cuenta = Banco.ListaCuentas.FirstOrDefault(c => c.NumeroCuenta == numeroCuenta);
         if(cuenta != null){
             
@@ -161,7 +165,8 @@ public static class ConsoleInterface
             int anchoTipo = cuenta.CuentaMovimientos.Max(c => c.Tipo.ToString().Length);
             Console.WriteLine("Reporte de Cuenta:");
             foreach(var c in cuenta.CuentaMovimientos){
-                Console.WriteLine($"{c.Horita.ToString().PadLeft(anchoHorita)} || {c.Tipo.ToString().PadLeft(anchoTipo)} || {c.Monto.ToString().PadLeft(anchoMonto)}");
+                Console.WriteLine($"{c.Horita.ToString().PadLeft(anchoHorita)} || {c.Tipo.ToString().PadLeft(anchoTipo)} || {c.Monto.ToString().PadLeft(anchoMonto)} || {(cuenta.
+                                EstadoCuenta ? "Activa" : "Inactiva")}");
             }
             Console.WriteLine("\nPresione un boton para continuar");
             Console.ReadKey();
@@ -210,6 +215,26 @@ public static class ConsoleInterface
             Console.WriteLine(ex.Message);
         }
 
+        Console.WriteLine("\nPresione un boton para continuar");
+        Console.ReadKey();
+    }
+    public static void ConsoleTransferir(){
+        Console.Clear();
+        Console.WriteLine("\nIngrese el número de cuenta origen para transferir:");
+        int.TryParse(Console.ReadLine(), out int numeroCuentaOrigen);
+        Console.WriteLine("Ingrese el número de cuenta destino para transferir:");
+        int.TryParse(Console.ReadLine(), out int numeroCuentaDestino);
+        Console.WriteLine("Ingrese el monto a transferir:");
+        decimal.TryParse(Console.ReadLine(), out decimal monto);
+        try
+        {
+            Banco.Transferir(numeroCuentaOrigen, numeroCuentaDestino, monto);
+            Console.WriteLine("Transferencia Exitosa");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
         Console.WriteLine("\nPresione un boton para continuar");
         Console.ReadKey();
     }

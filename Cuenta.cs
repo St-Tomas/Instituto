@@ -13,12 +13,13 @@ public abstract class Cuenta
     public record Movimiento(decimal Monto, TipoMovimiento Tipo, DateTime Horita);
     public List<Movimiento> CuentaMovimientos = new();
 
-    public Cuenta (string titular, string cbu, int numeroCuenta)
+    public Cuenta (string titular, string cbu, int numeroCuenta, bool estadoCuenta = true)
     {
         Titular = titular;
         Saldo = 0;
         CBU = cbu;
         NumeroCuenta = numeroCuenta;
+        EstadoCuenta = estadoCuenta;
     }
     public abstract void Depositar (decimal monto);
     public abstract void Retirar (decimal monto);
