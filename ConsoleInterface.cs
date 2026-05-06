@@ -53,8 +53,8 @@ public static class ConsoleInterface
         Console.WriteLine("2: Retirar.");
         Console.WriteLine("3: Transferir.");
         Console.WriteLine("4. Abortar.");
+        Console.Write("Seleccione una opción: ");
     }
-
     public static void ConsoleCrearUsuario()
     {
         Console.Clear();
@@ -185,6 +185,25 @@ public static class ConsoleInterface
         {
             Banco.Retirar(numeroCuenta, monto);
             Console.WriteLine("Retiro exitoso.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+
+        Console.WriteLine("\nPresione un boton para continuar");
+        Console.ReadKey();
+    }
+    public static void ConsoleDepositar(){
+        Console.Clear();
+        Console.WriteLine("\nIngrese el número de cuenta para depositar:");
+        int.TryParse(Console.ReadLine(), out int numeroCuenta);
+        Console.WriteLine("Ingrese el monto a depositar:");
+        decimal.TryParse(Console.ReadLine(), out decimal monto);
+        try
+        {
+            Banco.Depositar(numeroCuenta, monto);
+            Console.WriteLine("Depósito exitoso.");
         }
         catch (Exception ex)
         {

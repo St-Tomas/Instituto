@@ -46,15 +46,16 @@ while (ConsoleInterface.ProgramAlive)
             ConsoleInterface.ConsoleImprimirCuentas();
             break;
         case 3:
+            ConsoleInterface.ConsoleRealizarOperaciones();
             //PEDIMOS UNA CUENTA
 
             switch (ConsoleInterface.Leerint())
             {
                 case 1:
-                    //Aca ponemos el metodo de Deposito de ConsoleInterface
+                    ConsoleInterface.ConsoleDepositar();//Aca ponemos el metodo de Deposito de ConsoleInterface
                     break;
                 case 2:
-                    //Aca ponemos el metodo de Retiro de ConsoleInterface
+                    ConsoleInterface.ConsoleRetirar();//Aca ponemos el metodo de Retiro de ConsoleInterface
                     break;
                 case 3:
                     //Aca ponemos el metodo de Transferir de ConsoleInterface

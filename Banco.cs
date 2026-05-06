@@ -77,6 +77,26 @@ public static class Banco
             throw new Exception("Número de cuenta no encontrado.");
         }
     }
+        public static void Depositar(int numeroCuenta, decimal monto)
+    {
+        var cuenta = ListaCuentas.FirstOrDefault(c => c.NumeroCuenta == numeroCuenta);
+        if (cuenta != null)
+        {
+            if (cuenta.ValidarDeposito(monto))
+            {
+                cuenta.Depositar(monto);
+            }
+            else
+            {
+                throw new Exception ("Depósito inválido");
+            }    
+        }
+        else
+        {
+            // Lanzar error si la cuenta no existe
+            throw new Exception("Número de cuenta no encontrado.");
+        }
+    }
     public static List<Cuenta> BusquedaPorTitular(string titular){
         return ListaCuentas
             .Where(c => c.Titular.Contains(titular, StringComparison.OrdinalIgnoreCase))
