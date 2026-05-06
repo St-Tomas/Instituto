@@ -3,21 +3,21 @@ using SistemaBanco;
 
 while (ConsoleInterface.ProgramAlive)
 {
-    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
-    Banco.CrearCuenta("fedee",124346576,TipoCuenta.CuentaCorriente);
-    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
-    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
-    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
-    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
-    Banco.CrearCuenta("fedeerrr",124346576,TipoCuenta.CuentaCorriente);
-    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
-    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
-    Banco.CrearCuenta("fedeerrrrrrrrrr",1246,TipoCuenta.CuentaCorriente);
-    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
-    Banco.CrearCuenta("ferrr",124346576,TipoCuenta.CuentaCorriente);
-    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
-    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
-    Banco.CrearCuenta("fedeerrrrrrrrrr",124346576,TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",Banco.GenerarCBU(23),TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedee",Banco.GenerarCBU(123),TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",Banco.GenerarCBU(1),TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",Banco.GenerarCBU(223),TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",Banco.GenerarCBU(2),TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",Banco.GenerarCBU(0),TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrr",Banco.GenerarCBU(4),TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",Banco.GenerarCBU(6),TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",Banco.GenerarCBU(7),TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",Banco.GenerarCBU(8),TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",Banco.GenerarCBU(97),TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("ferrr",Banco.GenerarCBU(90),TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",Banco.GenerarCBU(91),TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",Banco.GenerarCBU(21),TipoCuenta.CuentaCorriente);
+    Banco.CrearCuenta("fedeerrrrrrrrrr",Banco.GenerarCBU(63),TipoCuenta.CuentaCorriente);
     Banco.ListaCuentas[5].Depositar(100000000);
 
     ConsoleInterface.ImprimirMenuInicio();

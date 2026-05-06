@@ -11,7 +11,7 @@ public static class Banco
     
     public static int NumCuentaId = 0;
 
-    public static void CrearCuenta(string titular, int cbu, TipoCuenta tipoCuenta){
+    public static void CrearCuenta(string titular, string cbu, TipoCuenta tipoCuenta){
         if (tipoCuenta == TipoCuenta.CajaDeAhorro)
         {
             ListaCuentas.Add(new CajaAhorro(titular, cbu, NumCuentaId));
@@ -20,7 +20,6 @@ public static class Banco
         {
             ListaCuentas.Add(new CuentaCorriente(titular, cbu, NumCuentaId));
         }
-        
         NumCuentaId++;
     }
      public static String EliminarCuenta(int numeroCuenta){
@@ -35,6 +34,13 @@ public static class Banco
             return "Número de cuenta no encontrado.";
         } 
     }
+    public static string GenerarCBU(int numeroCuenta){
+    string banco = "285";
+    string sucursal = "0041";
+    string cuenta = numeroCuenta.ToString().PadLeft(13, '0');
+    string cbu = banco + sucursal + cuenta;
+    return cbu;
+    } //generador de CBUs!!!!!!
 
     // --- MÉTODOS DE BÚSQUEDA CON LINQ ---
 
@@ -43,8 +49,7 @@ public static class Banco
             .Where(c => c.Titular.Contains(titular, StringComparison.OrdinalIgnoreCase))
             .ToList();
     }
-
-    public static List<Cuenta> BusquedaPorCBU(int cbu){
+    public static List<Cuenta> BusquedaPorCBU(string cbu){
         return ListaCuentas
             .Where(c => c.CBU == cbu)
             .ToList();

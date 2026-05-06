@@ -1,7 +1,7 @@
 namespace SistemaBanco;
 public class CajaAhorro : Cuenta {
-
-    public CajaAhorro(string titular, int cbu, int numeroCuenta) : base(titular, cbu, numeroCuenta){
+//cbu y eso 
+    public CajaAhorro(string titular, string cbu, int numeroCuenta) : base(titular, cbu, numeroCuenta){
         TipoCuenta = TipoCuenta.CajaDeAhorro;
         CuentaMovimientos.Add(new Movimiento(0,TipoMovimiento.CrearCuenta));
     }

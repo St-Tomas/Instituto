@@ -1,7 +1,7 @@
 namespace SistemaBanco;
 public class CuentaCorriente : Cuenta {
-
-    public CuentaCorriente(string titular, int cbu, int numerocuentaid) : base(titular, cbu, numerocuentaid){
+//cbu a string
+    public CuentaCorriente(string titular, string cbu, int numerocuentaid) : base(titular, cbu, numerocuentaid){
         TipoCuenta = TipoCuenta.CuentaCorriente;
         MargenDeuda = -10000m;
         CuentaMovimientos.Add(new Movimiento(0,TipoMovimiento.CrearCuenta));

@@ -71,14 +71,10 @@ public static class ConsoleInterface
 
         Console.Write("Nombre del Titular: ");
         string titular = Console.ReadLine() ?? "Sin Nombre";
-
-        Console.Write("Ingrese CBU (número): ");
-        int.TryParse(Console.ReadLine(), out int cbu);
-
-        Banco.CrearCuenta(titular, cbu, tipoDeCuenta);
+ //ya no pide cbu
+        Banco.CrearCuenta(titular, Banco.GenerarCBU(Banco.NumCuentaId), tipoDeCuenta);
         Console.WriteLine("Petición de creación enviada.");
     }
-
     public static void ConsoleDarDeBaja()
     {
 //cambiar el status de la cuenta a inactiva, no eliminarla de la lista
