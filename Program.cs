@@ -1,4 +1,5 @@
-﻿using SistemaBanco;
+﻿using System.ComponentModel;
+using SistemaBanco;
 
 while (ConsoleInterface.ProgramAlive)
 {
@@ -21,7 +22,7 @@ while (ConsoleInterface.ProgramAlive)
 
     ConsoleInterface.ImprimirMenuInicio();
     //ConsoleInterface.EleccionMenu(ConsoleInterface.Leerint());
-    
+
     //Menú de seleccion
     switch (ConsoleInterface.Leerint())
     {
@@ -37,6 +38,9 @@ while (ConsoleInterface.ProgramAlive)
         case 4:
             break;
         case 5:
+            ConsoleInterface.ConsoleEliminarCuenta();
+            break;
+        case 6:
             ConsoleInterface.ProgramAlive = false;
             break;
     }

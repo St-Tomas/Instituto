@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
@@ -33,7 +34,8 @@ public static class ConsoleInterface
         Console.WriteLine("2: Eliminar Cuenta.");
         Console.WriteLine("3: Mostrar Cuentas.");
         Console.WriteLine("4: Mostrar reportes de Cuentas.");
-        Console.WriteLine("5: Salir.");
+        Console.WriteLine("5: Eliminar una cuenta.");
+        Console.WriteLine("6: Salir.");
         Console.Write("Seleccione una opción: ");
     }
 
@@ -79,6 +81,24 @@ public static class ConsoleInterface
 
     public static void ConsoleDarDeBaja()
     {
+//cambiar el status de la cuenta a inactiva, no eliminarla de la lista
+        Console.Clear();
+        Console.WriteLine("Ingrese el número de cuenta a dar de baja:");
+        int.TryParse(Console.ReadLine(), out int numeroCuenta);
+        var cuenta = Banco.ListaCuentas.FirstOrDefault(c => c.NumeroCuenta == numeroCuenta);
+        if (cuenta != null)
+        {
+            cuenta.EstadoCuenta = false;
+            Console.WriteLine("Cuenta dada de baja exitosamente.");
+            Console.WriteLine("\nPresione un boton para continuar");
+            Console.ReadKey();
+        }
+        else
+        {
+            Console.WriteLine("Número de cuenta no encontrado.");
+            Console.WriteLine("\nPresione un boton para continuar");
+            Console.ReadKey();
+        }
     }
 
     public static void ConsoleImprimirCuentas()
@@ -120,6 +140,17 @@ public static class ConsoleInterface
                                 }||||{cuenta.Saldo.
                                 ToString().PadRight(anchoSaldo)}");
         }
+        Console.WriteLine("\nPresione un boton para continuar");
+        Console.ReadKey();
+    }
+    public static void ConsoleEliminarCuenta()
+    {
+        Console.Clear();
+        Console.WriteLine("\nIngrese el número de cuenta a eliminar:");
+        int.TryParse(Console.ReadLine(), out int numeroCuenta);
+            
+        Console.WriteLine(Banco.EliminarCuenta(numeroCuenta));
+
         Console.WriteLine("\nPresione un boton para continuar");
         Console.ReadKey();
     }

@@ -23,14 +23,17 @@ public static class Banco
         
         NumCuentaId++;
     }
-
-    public static void EliminarCuenta(int numCuenta){
-        var cuenta = ListaCuentas.FirstOrDefault(c => c.NumeroCuenta == numCuenta);
-        
+     public static String EliminarCuenta(int numeroCuenta){
+        var cuenta = ListaCuentas.FirstOrDefault(c => c.NumeroCuenta == numeroCuenta);
         if (cuenta != null)
         {
             ListaCuentas.Remove(cuenta);
+            return "Cuenta eliminada exitosamente.";
         }
+         else
+        {
+            return "Número de cuenta no encontrado.";
+        } 
     }
 
     // --- MÉTODOS DE BÚSQUEDA CON LINQ ---
