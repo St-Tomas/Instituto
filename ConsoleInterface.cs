@@ -71,14 +71,10 @@ public static class ConsoleInterface
 
         Console.Write("Nombre del Titular: ");
         string titular = Console.ReadLine() ?? "Sin Nombre";
-
-        Console.Write("Ingrese CBU (número): ");
-        int.TryParse(Console.ReadLine(), out int cbu);
-
-        Banco.CrearCuenta(titular, cbu, tipoDeCuenta);
+ //ya no pide cbu
+        Banco.CrearCuenta(titular, Banco.GenerarCBU(Banco.NumCuentaId), tipoDeCuenta);
         Console.WriteLine("Petición de creación enviada.");
     }
-
     public static void ConsoleDarDeBaja()
     {
 //cambiar el status de la cuenta a inactiva, no eliminarla de la lista
@@ -153,5 +149,29 @@ public static class ConsoleInterface
 
         Console.WriteLine("\nPresione un boton para continuar");
         Console.ReadKey();
+    }
+    //añadir mostrar consola para reportes y salir
+    public static void ConsoleMostrarReportes(int numeroCuenta){
+        Console.Clear();
+        var cuenta = Banco.ListaCuentas.FirstOrDefault(c => c.NumeroCuenta == numeroCuenta);
+        if(cuenta != null){
+            
+            int anchoMonto = cuenta.CuentaMovimientos.Max(c => c.Monto.ToString().Length);
+            int anchoHorita = cuenta.CuentaMovimientos.Max(c => c.Horita.ToString().Length);
+            int anchoTipo = cuenta.CuentaMovimientos.Max(c => c.Tipo.ToString().Length);
+            Console.WriteLine("Reporte de Cuenta:");
+            foreach(var c in cuenta.CuentaMovimientos){
+                Console.WriteLine($"{c.Horita.ToString().PadLeft(anchoHorita)} || {c.Tipo.ToString().PadLeft(anchoTipo)} || {c.Monto.ToString().PadLeft(anchoMonto)}");
+            }
+            Console.WriteLine("\nPresione un boton para continuar");
+            Console.ReadKey();
+        }
+    }
+    public static void ConsoleSalir()
+    {
+        Console.Clear();
+        Console.WriteLine("Saliendo del programa...");
+        Console.ReadKey();
+        ProgramAlive = false;
     }
 }
