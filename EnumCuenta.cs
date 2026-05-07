@@ -12,3 +12,9 @@ public enum TipoMovimiento
     TransferenciaRecibida,
     DarDeBaja
 }
+public enum Menus //enloqueci y estamos tocando program a cada rato 
+{
+    Inicio,
+    AdministracionCuentas,
+    Operaciones
+}

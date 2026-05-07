@@ -1,23 +1,25 @@
 namespace SistemaBanco;
 using System.Numerics;
-
+//cbu ahora es string
 public abstract class Cuenta
 {
+    public bool EstadoCuenta;
     public string Titular {get; init;}
     public decimal Saldo {get; set;}
-    public int CBU {get; init;}
+    public string CBU {get; init;}
     public TipoCuenta TipoCuenta;
     public int NumeroCuenta;
     public decimal MargenDeuda;
-    public record Movimiento(decimal Monto, TipoMovimiento tipo);
+    public record Movimiento(decimal Monto, TipoMovimiento Tipo, DateTime Horita);
     public List<Movimiento> CuentaMovimientos = new();
 
-    public Cuenta (string titular, int cbu, int numeroCuenta)
+    public Cuenta (string titular, string cbu, int numeroCuenta, bool estadoCuenta = true)
     {
         Titular = titular;
         Saldo = 0;
         CBU = cbu;
         NumeroCuenta = numeroCuenta;
+        EstadoCuenta = estadoCuenta;
     }
     public abstract void Depositar (decimal monto);
     public abstract void Retirar (decimal monto);
